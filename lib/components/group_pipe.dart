@@ -18,6 +18,7 @@ class GroupPipeComponent extends PositionComponent
 
   @override
   FutureOr<void> onLoad() async {
+    await FlameAudio.audioCache.load('point.wav');
     position.x = game.size.x;
 
     const double gapSize = 120;

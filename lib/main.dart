@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:game_flappy_bird/components/group_pipe.dart';
 import 'package:game_flappy_bird/components/overlays/over_game.dart';
 import 'package:game_flappy_bird/components/overlays/start_game.dart';
 import 'package:game_flappy_bird/components/player.dart';
+import 'package:game_flappy_bird/components/score_display.dart';
 
 void main() {
   runApp(
@@ -30,7 +30,8 @@ void main() {
 
 class MyGame extends FlameGame with HasCollisionDetection, TapCallbacks {
   late PlayerComponent player;
-  late TextComponent scoreText;
+  // late TextComponent scoreText;
+  late ScoreDisplayComponent scoreDisplay;
   double alapseTimePipe = 0.0;
   bool gameStarted = false;
   int score = 0;
@@ -40,8 +41,10 @@ class MyGame extends FlameGame with HasCollisionDetection, TapCallbacks {
     add(BackgroundComponent());
     add(GroupComponent());
     player = PlayerComponent();
-    add(player);
-    add(scoreText = createScoreText());
+    await add(player);
+    // add(scoreText = createScoreText());
+    scoreDisplay = ScoreDisplayComponent();
+    await add(scoreDisplay);
     return super.onLoad();
   }
 
@@ -64,7 +67,8 @@ class MyGame extends FlameGame with HasCollisionDetection, TapCallbacks {
 
   void startGame() {
     score = 0;
-    scoreText.text = 'Score: 0';
+    // scoreText.text = 'Score: 0';
+    scoreDisplay.updateScore(score);
     alapseTimePipe = 0.0;
     gameStarted = true;
 
@@ -83,32 +87,34 @@ class MyGame extends FlameGame with HasCollisionDetection, TapCallbacks {
     gameStarted = false;
   }
 
-  TextComponent createScoreText() {
-    scoreText = TextComponent(
-      text: 'Score: $score',
-      position: Vector2(10, 10),
-      anchor: Anchor.topLeft,
-      priority: 100,
-      textRenderer: TextPaint(
-        style: const TextStyle(
-          fontSize: 24,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-    return scoreText;
-  }
+  // TextComponent createScoreText() {
+  //   scoreText = TextComponent(
+  //     text: 'Score: $score',
+  //     position: Vector2(10, 10),
+  //     anchor: Anchor.topLeft,
+  //     priority: 100,
+  //     textRenderer: TextPaint(
+  //       style: const TextStyle(
+  //         fontSize: 24,
+  //         color: Colors.white,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //     ),
+  //   );
+  //   return scoreText;
+  // }
 
   void increaseScore() {
     score++;
-    scoreText.text = 'Score: $score';
+    // scoreText.text = 'Score: $score';
+    scoreDisplay.updateScore(score);
     print('Score: $score');
   }
 
   void resetScore() {
     score = 0;
-    scoreText.text = 'Score: $score';
+    // scoreText.text = 'Score: $score';
+    scoreDisplay.updateScore(score);
   }
 
   void removePipe() {
