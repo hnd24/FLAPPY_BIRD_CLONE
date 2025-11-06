@@ -6,7 +6,7 @@ import 'package:game_flappy_bird/utils/config.dart';
 
 class GroupComponent extends ParallaxComponent with CollisionCallbacks {
   GroupComponent() : super() {
-    debugMode = true;
+    debugMode = false;
   }
 
   @override

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:game_flappy_bird/components/pipe.dart';
 import 'package:game_flappy_bird/main.dart';
 import 'package:game_flappy_bird/utils/config.dart';
@@ -9,7 +10,7 @@ import 'package:game_flappy_bird/utils/config.dart';
 class GroupPipeComponent extends PositionComponent
     with HasGameReference<MyGame> {
   GroupPipeComponent() : super() {
-    debugMode = true;
+    debugMode = false;
   }
 
   bool alreadyScored = false;
@@ -64,6 +65,7 @@ class GroupPipeComponent extends PositionComponent
     if (!alreadyScored &&
         (position.x + PipeComponent.pipeWidth) < game.player.position.x) {
       game.increaseScore();
+      FlameAudio.play('point.wav');
       alreadyScored = true;
     }
     super.update(dt);

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:game_flappy_bird/components/ground.dart';
 import 'package:game_flappy_bird/components/pipe.dart';
 import 'package:game_flappy_bird/main.dart';
@@ -11,7 +12,7 @@ import 'package:game_flappy_bird/utils/config.dart';
 class PlayerComponent extends SpriteAnimationComponent
     with HasGameReference<MyGame>, CollisionCallbacks {
   PlayerComponent() : super() {
-    debugMode = true;
+    debugMode = false;
   }
 
   // velocity Y (px/s)
@@ -62,6 +63,7 @@ class PlayerComponent extends SpriteAnimationComponent
   }
 
   void addFly() {
+    FlameAudio.play('wing.wav');
     velocityBird = Config.flyVelocity;
     if (!isFirstClick) {
       isFirstClick = true;
@@ -103,6 +105,11 @@ class PlayerComponent extends SpriteAnimationComponent
     PositionComponent other,
   ) {
     if (other is GroupComponent || other is PipeComponent) {
+      if (other is PipeComponent) {
+        FlameAudio.play('hit.wav');
+      } else if (other is GroupComponent) {
+        FlameAudio.play('die.wav');
+      }
       gameOver();
     }
     //chạm đất sẽ nhảy lên

@@ -14,7 +14,7 @@ class PipeComponent extends PositionComponent
   static const double headHeight = 32;
 
   PipeComponent({required this.isTop, required this.pipeHeight}) : super() {
-    debugMode = true;
+    debugMode = false;
   }
 
   @override

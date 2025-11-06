@@ -10,7 +10,7 @@
 //   bool isScored = false;
 
 //   SpaceComponent({required this.mSize}) : super(size: mSize) {
-//     debugMode = true;
+//     debugMode = false;
 //   }
 
 //   @override

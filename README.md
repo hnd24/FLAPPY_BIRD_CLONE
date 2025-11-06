@@ -1,6 +1,6 @@
-# Flappy Bird — Flutter Clone 🐦🎮
+# Flappy Bird — Flutter & Flame Clone 🐦🎮
 
-A simple Flappy Bird-style game built with Flutter. This project follows the tutorial playlist on [Youtube](https://www.youtube.com/watch?v=nVN0Jv62fpA&list=PLbhheUORMqP21kdVNI3uCxF2115NxjhJ6).
+A simple Flappy Bird-style game built with Flutter & Flame. This project follows the tutorial playlist on [Youtube](https://www.youtube.com/watch?v=nVN0Jv62fpA&list=PLbhheUORMqP21kdVNI3uCxF2115NxjhJ6).
 
 ## Install & Run ▶️
 
